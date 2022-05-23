@@ -3,6 +3,13 @@
 ## 项目说明
 该项目用于SYSU-USC的无纸化登记。
 
+## 项目运行
+
+```bash
+   npm install
+   npm run dev
+```
+
 ## TODO
 
 - [ ] 借伞登记
