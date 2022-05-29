@@ -6,7 +6,21 @@ defineProps<{ entryName: string }>();
 
 <template>
     <div class="entry-body">
-        <img src="../assets/umbrella.png">
-        <h2> {{ entryName }} </h2>
+        <img class="icon" src="../assets/umbrella.png">
+        <span class="entry-name-text">{{ entryName }}</span>
     </div>
 </template>
+
+<style>
+
+.icon {
+    vertical-align: middle;
+}
+
+.entry-name-text {
+    font-family: "KaiTi", cursive, serif, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+</style>
