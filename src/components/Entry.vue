@@ -1,3 +1,10 @@
+<template>
+    <div class="entry-body">
+        <img class="icon" :src=logoPath alt="">
+        <span class="entry-name-text">{{ entryName }}</span>
+    </div>
+</template>
+
 <script setup lang="ts">
 
 const props = defineProps({
@@ -8,13 +15,6 @@ const props = defineProps({
 const logoPath =  "/src/assets/" + props.logoName
 
 </script>
-
-<template>
-    <div class="entry-body">
-        <img class="icon" :src=logoPath alt="">
-        <span class="entry-name-text">{{ entryName }}</span>
-    </div>
-</template>
 
 <style>
 
@@ -46,3 +46,5 @@ const logoPath =  "/src/assets/" + props.logoName
     font-size: 50px;
     line-height: 100px;
 }
+
+</style>
