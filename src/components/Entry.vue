@@ -30,19 +30,19 @@ const logoPath =  "/src/assets/" + props.logoName
     border: 1px solid black;
     border-radius: 25px;
 
-    box-shadow: 2px 2px 5px #000;
+    box-shadow: 3px 3px 5px #000;
 }
 
 .icon {
+    padding-top: 25px;
     vertical-align: middle;
-    height: 100px;
+    height: 125px;
 }
 
 .entry-name-text {
     display: block;
     font-family: "KaiTi", cursive, serif, sans-serif;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 50px;
+    line-height: 100px;
 }
-
-</style>
