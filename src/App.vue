@@ -20,7 +20,7 @@ const entryGroup = ref([
   },
   {
     entryName: '雨伞归还',
-    logoName: 'umbrella-back.png'
+    logoName: 'umbrellaBack.png'
   },
   {
     entryName: '材料密封',
