@@ -1,12 +1,17 @@
 <script setup lang="ts">
 
-defineProps<{ entryName: string }>();
+const props = defineProps({
+    entryName: String,
+    logoName: String
+})
+
+const logoPath =  "/src/assets/" + props.logoName
 
 </script>
 
 <template>
     <div class="entry-body">
-        <img class="icon" src="../assets/umbrella.png">
+        <img class="icon" :src=logoPath alt="">
         <span class="entry-name-text">{{ entryName }}</span>
     </div>
 </template>
@@ -14,8 +19,13 @@ defineProps<{ entryName: string }>();
 <style>
 
 .entry-body {
-    height: 100px;
-    width: 250px;
+    display: inline-block;
+
+    vertical-align: middle;
+    text-align: center;
+
+    height: 250px;
+    width: 500px;
 
     border: 1px solid black;
     border-radius: 25px;
@@ -29,6 +39,7 @@ defineProps<{ entryName: string }>();
 }
 
 .entry-name-text {
+    display: block;
     font-family: "KaiTi", cursive, serif, sans-serif;
     font-weight: bold;
     font-size: 30px;
