@@ -10,7 +10,7 @@
                 :entryName="item.entryName" :logoName="item.logoName" v-on:click="hideEntryShowForm">
             </Entry>
             <!-- form -->
-            <Form></Form>
+            <Form v-if="!hideForm"></Form>
         </div>
     </el-config-provider>
 </template>
