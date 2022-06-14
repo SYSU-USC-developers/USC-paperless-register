@@ -43,6 +43,13 @@
 .form {
     /* 设置位置 */
     margin: 0 auto;
+    padding-top: 20px;
+    padding-right: 20px;
+
+    border: 3px solid #004E20;
+
+    border-radius: 20px;
+
     /* 设置输入框的宽度 */
     max-width: 460px
 }
@@ -50,6 +57,7 @@
 </style>
 
 <script setup lang="ts">
+
 import { reactive } from 'vue'
 
 const formItem = reactive({
@@ -57,4 +65,5 @@ const formItem = reactive({
   phoneNumber: '',
   umbrellaNumber: 1
 })
+
 </script>
