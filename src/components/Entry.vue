@@ -33,6 +33,10 @@ const logoPath =  "/src/assets/" + props.logoName
     box-shadow: 3px 3px 5px #000;
 }
 
+.entry-body:active {
+    box-shadow: 0px 0px 5px #000;
+}
+
 .icon {
     padding-top: 25px;
     vertical-align: middle;
