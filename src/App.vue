@@ -6,9 +6,11 @@
                 <img alt="Vue logo" class="element-plus-logo" src="./assets/sysu-logo.png" />
             </div>
             <!-- entry -->
-            <Entry class="entry" v-if="!isHidden" v-for="item in entryGroup" ref="refContent" :key="item.entryName"
+            <Entry class="entry" v-if="!hideEntry" v-for="item in entryGroup" ref="refContent" :key="item.entryName"
                 :entryName="item.entryName" :logoName="item.logoName" v-on:click="hideEntryShowForm">
             </Entry>
+            <!-- form -->
+            <Form></Form>
         </div>
     </el-config-provider>
 </template>
@@ -43,11 +45,13 @@ const entryGroup = ref([
         logoName: 'cardRenew.png'
     },
 ])
-// 用于隐藏 Entry 的布尔变量
-const isHidden = ref(false)
+// 用于隐藏的布尔变量
+const hideEntry = ref(false)
+const hideForm  = ref(true)
 
 function hideEntryShowForm() {
-    isHidden.value = true
+    hideEntry.value = true
+    hideForm.value  = false
 }
 
 </script>
@@ -77,4 +81,5 @@ function hideEntryShowForm() {
 .entry:nth-child(3n+1) {
     margin-right: 0;
 }
+
 </style>
