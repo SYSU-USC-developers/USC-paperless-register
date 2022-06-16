@@ -15,8 +15,10 @@ declare module '@vue/runtime-core' {
     ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     Entry: typeof import('./components/Entry.vue')['default']
     Form: typeof import('./components/Form.vue')['default']
+    Keyboard: typeof import('./components/Keyboard.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SubKeyboard: typeof import('./components/SubKeyboard.vue')['default']
   }
 }
 

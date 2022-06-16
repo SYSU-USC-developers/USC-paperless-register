@@ -1,9 +1,8 @@
 <template>
 	<button
 	  type="button"
-	  @click="$emit('touchkey', curkey)"
 	>
-	  <a href="">{{curkey}}</a>
+	<a>{{curkey}}</a>
 	</button>
 </template>
 
