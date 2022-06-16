@@ -1,37 +1,42 @@
 <template>
-    <el-form ref="elForm" class="form" label-width="100px" :model="formItem" size="large">
-        <el-form-item label="学工号">
-            <el-input v-model="formItem.idNumber" :value=idNumberRef :disabled="true">
-            </el-input>
-        </el-form-item>
+    <div class="form_div">
+        <el-form ref="elForm" class="form" label-width="100px" :model="formItem" size="large">
+            <el-form-item label="学工号">
+                <el-input v-model="formItem.idNumber" :value=idNumberRef :disabled="true">
+                </el-input>
+            </el-form-item>
 
-        <el-form-item label="手机号">
-            <el-input v-model="formItem.phoneNumber" placeholder="请输入手机号">
-            </el-input>
-        </el-form-item>
+            <el-form-item label="手机号">
+                <el-input v-model="formItem.phoneNumber" placeholder="请输入手机号"  @focus="oninputfocus('phoneNumber')" @blur="oninputblur">
+                </el-input>
+            </el-form-item>
 
-        <el-form-item label="是否代理">
-            <el-radio-group v-model="formItem.proxy" v-on:change="handleProxyButton">
-                <el-radio :label=true>是</el-radio>
-                <el-radio :label=false>否</el-radio>
-            </el-radio-group>
-        </el-form-item>
+            <el-form-item label="是否代理">
+                <el-radio-group v-model="formItem.proxy" v-on:change="handleProxyButton">
+                    <el-radio :label=true>是</el-radio>
+                    <el-radio :label=false>否</el-radio>
+                </el-radio-group>
+            </el-form-item>
 
-        <el-form-item v-if="(formItem.proxy)" label="代理人学号">
-            <el-input v-model="formItem.proxyIDNumber" placeholder="请输入代理人学号">
-            </el-input>
-        </el-form-item>
+            <el-form-item v-if="(formItem.proxy)" label="代理人学号">
+                <el-input v-model="formItem.proxyIDNumber" placeholder="请输入代理人学号">
+                </el-input>
+            </el-form-item>
 
-        <el-form-item label="借伞数量">
-            <el-input-number v-model="formItem.umbrellaNumber" placeholder="1">
-            </el-input-number>
-        </el-form-item>
+            <el-form-item label="借伞数量">
+                <el-input-number v-model="formItem.umbrellaNumber" placeholder="1">
+                </el-input-number>
+            </el-form-item>
 
-        <el-form-item size="large">
-            <el-button type="primary" @click="postData">提交</el-button>
-            <el-button type="warning" @click="">重置</el-button>
-        </el-form-item>
-    </el-form>
+            <el-form-item size="large">
+                <el-button type="primary" @click="postData">提交</el-button>
+                <el-button type="warning" @click="">重置</el-button>
+            </el-form-item>
+        </el-form>
+    </div>
+    <div class="keyboard_div">
+        <Keyboard @touchkey="ontouchkey" />
+    </div>
 </template>
 
 <style>
@@ -55,6 +60,8 @@
 import { reactive } from 'vue'
 import axios from 'axios'
 import { ref } from 'vue'
+
+let curInput:string = "idNumber"
 
 axios.defaults.withCredentials = true
 
@@ -126,9 +133,9 @@ async function getSession() {
     try {
         const { data } = await axios.post<CreateUserResponse>(
             'http://127.0.0.1:8256/session',
-            { 
-                sno: '18327034', 
-                passwd: '142313' 
+            {
+                sno: '18327034',
+                passwd: '142313'
             },
             {
                 headers: {
@@ -183,6 +190,34 @@ async function postData() {
 const emitSucceedSignal = () => {
     const succeedFlag = succeedFlagRef.value
     emit("emitSucceedSignal", succeedFlag)
+}
+
+function oninputfocus(str:string){
+	curInput = str
+}
+
+function oninputblur(){
+	//curInput = ""
+}
+
+function ontouchkey(key: string){
+	if(key === "确定"){
+		postData()
+		return;
+	}
+	if(curInput === ""){
+		return;
+	}
+	if(key === "删除"){
+		if(curInput === "phoneNumber"){
+			formItem[curInput] = formItem[curInput].substring(0,formItem[curInput].length-1)
+		} 
+		
+	} else{
+		if(curInput === "phoneNumber"){
+			formItem[curInput] += key
+		}
+	}
 }
 
 </script>

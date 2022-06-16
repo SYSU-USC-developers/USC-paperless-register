@@ -89,14 +89,13 @@ function postData() {
 
 function oninputfocus(str:String){
 	curInput = str
-	
 }
 
 function oninputblur(){
 	//curInput = ""
 }
 
-function ontouchkey(key){
+function ontouchkey(key: string){
 	if(key === "确定"){
 		postData()
 		return;
