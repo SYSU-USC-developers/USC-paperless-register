@@ -16,9 +16,12 @@ declare module '@vue/runtime-core' {
     ElRadio: typeof import('element-plus/es')['ElRadio']
     ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
     Entry: typeof import('./components/Entry.vue')['default']
+    Form: typeof import('./components/Form.vue')['default']
+    Keyboard: typeof import('./components/Keyboard.vue')['default']
     Login: typeof import('./components/Login.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SubKeyboard: typeof import('./components/SubKeyboard.vue')['default']
     UmbrellaForm: typeof import('./components/UmbrellaForm.vue')['default']
   }
 }
