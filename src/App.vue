@@ -5,12 +5,14 @@
             <div class="logo-area">
                 <img alt="Vue logo" class="element-plus-logo" src="./assets/sysu-logo.png" />
             </div>
+            <!-- login -->
+            <Login v-if="!hideLogin" @setFlagAndGiveID="setFlagAndReciveID"></Login>
             <!-- entry -->
             <Entry class="entry" v-if="!hideEntry" v-for="item in entryGroup" ref="refContent" :key="item.entryName"
-                :entryName="item.entryName" :logoName="item.logoName" v-on:click="hideEntryShowForm">
+                :entryName="item.entryName" :logoName="item.logoName" v-on:click="ShowForm">
             </Entry>
             <!-- form -->
-            <Form v-if="!hideForm"></Form>
+            <UmbrellaForm v-if="!hideForm" :idNumerFromParent="idNumberRef" @emitSucceedSignal="receiveFlag"></UmbrellaForm>
         </div>
     </el-config-provider>
 </template>
@@ -45,18 +47,45 @@ const entryGroup = ref([
         logoName: 'cardRenew.png'
     },
 ])
-// 用于隐藏的布尔变量
-const hideEntry = ref(false)
+// 一些变量
+const idNumberRef = ref("")
+// 用于隐藏和显示组件的布尔变量
+const hideLogin = ref(false)
+const hideEntry = ref(true)
 const hideForm  = ref(true)
-
-function hideEntryShowForm() {
+// 用于隐藏和显示组件的函数
+function showLogin() {
+    hideLogin.value = false
+    hideEntry.value = true
+    hideForm.value  = true
+}
+function ShowEntry() {
+    hideLogin.value = true
+    hideEntry.value = false
+    hideForm.value  = true
+}
+function ShowForm() {
+    hideLogin.value = true
     hideEntry.value = true
     hideForm.value  = false
 }
+// 接受登录返回的变量的函数
+const setFlagAndReciveID = (isLoginFlag: boolean, idNumber: string) => {
+    idNumberRef.value = idNumber
+
+    console.log(idNumberRef.value)
+
+    ShowEntry()
+}
+const receiveFlag = (succeedFlag: boolean) => {
+    ShowEntry()
+}
+
 
 </script>
 
 <style>
+
 #app {
     position: absolute;
     text-align: center;
