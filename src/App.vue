@@ -70,12 +70,15 @@ function hideEntryShowForm() {
 
 .element-plus-logo {
     width: 50%;
+	padding-top: 40px;
+	padding-bottom: 40px;
 }
 
 .entry {
     margin-right: 100px;
     margin-bottom: 50px;
     margin-top: 50px;
+	
 }
 
 .entry:nth-child(3n+1) {

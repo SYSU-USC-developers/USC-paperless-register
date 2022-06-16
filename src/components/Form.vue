@@ -23,7 +23,7 @@
 		</el-form>
 	</div>
 	<div class="keyboard_div">
-		<Keyboard @touchkey="ontouchkey"/>
+		<Keyboard @touchkey="ontouchkey" />
 	</div>
 	
 
@@ -32,24 +32,28 @@
 <style>
 .form {
     /* 设置位置 */
-    margin: 0 auto;
+    margin: 0 0;
     padding-top: 20px;
-    padding-right: 20px;
+    padding-right: 120px;
+	padding-left: 120px;
 
-    border: 3px solid #004E20;
-
-    border-radius: 20px;
+    border: 0px solid #004E20;
+    border-radius: 0px;
 
     /* 设置输入框的宽度 */
-    max-width: 460px
+    /* max-width: 460px */
+}
+el-form-item{
+	max-width: 300px;
 }
 .form_div{
-	width: 50%;
+	width: 60%;
 	display: inline-block;
 }
 .keyboard_div{
-	width: 50%;
+	width: 40%-40px;
 	display: inline-block;
+	margin-right: 40px;
 }
 </style>
 
@@ -59,7 +63,7 @@ import { reactive,ref } from 'vue'
 import axios from 'axios';
 import Keyboard from './Keyboard.vue'
 
-let curInput:String = ""
+let curInput:String = "idNumber"
 
 
 const formItem = reactive({
@@ -93,17 +97,28 @@ function oninputblur(){
 }
 
 function ontouchkey(key){
+	if(key === "确定"){
+		postData()
+		return;
+	}
 	if(curInput === ""){
 		return;
 	}
-	if(key === "确认"){
-		
-	}else if(key === ""){
+	if(key === "删除"){
+		if(curInput === "umbrellaNumber"){
+			formItem[curInput] =  Number(formItem[curInput].toString().substring(0,formItem[curInput].toString().length-1))
+			
+		}else{
+			formItem[curInput] = formItem[curInput].substring(0,formItem[curInput].length-1)
+		}
 		
 	}else{
-		formItem[curInput] += key
-		console.log(key)
-		console.log(curInput)
+		if(curInput === "umbrellaNumber"){
+			formItem[curInput] =  Number(formItem[curInput].toString() + key)
+		}else{
+			formItem[curInput] += key
+		}
+		
 	}
 }
 
